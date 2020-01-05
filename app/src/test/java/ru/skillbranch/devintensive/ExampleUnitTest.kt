@@ -5,6 +5,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.transliteration
 import java.util.*
@@ -22,7 +23,11 @@ class ExampleUnitTest {
 
     @Test
     fun test_instance() {
-         assertEquals(toInitials("john" ,"doe"), "JD") //JD
+        assertEquals(Utils.parseFullName(null) ,Pair(null, null))
+        assertEquals(Utils.parseFullName("") ,Pair(null, null))
+        assertEquals(Utils.parseFullName(" ") ,Pair(null, null))
+        assertEquals(Utils.parseFullName("John") ,Pair("John", null))
+         assertEquals(toInitials("john" ,"doe"), "JD")
          assertEquals(toInitials("John", null),"J")
          assertEquals(toInitials(null, null) ,"null")
          assertEquals(toInitials(" ", "") ,"null")
@@ -52,5 +57,6 @@ class ExampleUnitTest {
         assertEquals("A     ".truncate(3),"A")
          assertEquals("<p class='title'>Образовательное IT-сообщество Skill Branch</p>".stripHtml(), "Образовательное IT-сообщество Skill Branch")
          assertEquals("<p>Образовательное       IT-сообщество Skill Branch</p>".stripHtml() ,"Образовательное IT-сообщество Skill Branch")
+        println(Date().add(-5, TimeUnits.DAY))
     }
 }
